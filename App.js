@@ -19,6 +19,7 @@ import {
 } from 'react-native';
 
 import Header from './app/components/Header';
+import Content from './app/components/Content';
 import {
   Colors,
 } from 'react-native/Libraries/NewAppScreen';
@@ -27,40 +28,26 @@ const App: () => Node = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+    // backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+    backgroundColor: '#fff',
+    flex: 1,
   };
 
   return (
     <SafeAreaView style={backgroundStyle}>
-      <Header />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <View>
-          <Text>`sadsadasdasd`</Text>
-        </View>
-      </ScrollView>
+      <Header style={styles.header} />
+      <Content style={styles.content} />
     </SafeAreaView>
   );
 };
 
-// const styles = StyleSheet.create({
-//   sectionContainer: {
-//     marginTop: 32,
-//     paddingHorizontal: 24,
-//   },
-//   sectionTitle: {
-//     fontSize: 24,
-//     fontWeight: '600',
-//   },
-//   sectionDescription: {
-//     marginTop: 8,
-//     fontSize: 18,
-//     fontWeight: '400',
-//   },
-//   highlight: {
-//     fontWeight: '700',
-//   },
-// });
+const styles = StyleSheet.create({
+  header: {
+    flex: 1,
+  },
+  content: {
+    flex: 9,
+  },
+});
 
 export default App;

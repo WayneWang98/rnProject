@@ -14,18 +14,19 @@ const Header = () => {
 
 const styles = StyleSheet.create({
   header: {
-		position: 'relative',
-		height: 48,
-    // backgroundColor: 'red',
+    position: 'relative',
+    // height: 48,
+    // flex: 1,
   },
   back: {
     position: 'absolute',
-		lineHeight: 40,
-		left: 10
+    lineHeight: 40,
+    left: 10,
   },
   title: {
-		lineHeight: 48,
-		textAlign: 'center'
+    lineHeight: 48,
+    textAlign: 'center',
+    fontSize: 20,
   },
 });
 
