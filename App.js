@@ -8,27 +8,13 @@
 
 import React from 'react';
 import type {Node} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import {SafeAreaView, StyleSheet} from 'react-native';
 
 import Header from './app/components/Header';
 import Content from './app/components/Content';
-import {
-  Colors,
-} from 'react-native/Libraries/NewAppScreen';
 
 const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
   const backgroundStyle = {
-    // backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
     backgroundColor: '#fff',
     flex: 1,
   };

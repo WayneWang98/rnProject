@@ -1,5 +1,9 @@
+/*
+  The Content Component of App
+*/
+
 import React from 'react';
-import {View, Text, StyleSheet, Image, Button, Alert} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import Card from './Card';
 
 const Content = () => {

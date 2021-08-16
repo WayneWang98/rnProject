@@ -1,13 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  Animated,
-  Easing,
-  ImageBackground,
-} from 'react-native';
+import {View, Text, StyleSheet, Image, Animated, Easing} from 'react-native';
 
 const myList = [
   {
@@ -68,12 +60,14 @@ const myList = [
   },
 ];
 
+// The map between mood and picture
 const moodLevelIcon = {
   unknown: require('../static/images/mood-unknown.png'),
   middle: require('../static/images/mood-middle.png'),
   high: require('../static/images/mood-high.png'),
 };
 
+// The map between mood and color
 const moodColor = {
   unknown: '#CFCFCF',
   middle: '#52C873',
@@ -83,19 +77,20 @@ const moodColor = {
 const Card = () => {
   const [dataList, setDataList] = useState(myList);
   const [hasCalled, setHasCalled] = useState(false);
+
   const playAnimation = () => {
-    if (hasCalled) return;
+    if (hasCalled) return; // the animation only played one times
     setHasCalled(true);
     dataList.forEach((item, index) => {
       item.barHeight = new Animated.Value(0);
-      const barGrowAnimated = Animated.timing(item.barHeight, {
+      const barGrowAnimated = Animated.timing(item.barHeight, { // the animation of bar
         toValue: item.score ? item.score * 1.5 + 40 : 50,
         duration: 1000,
         easing: Easing.linear,
         delay: 100 * index,
       });
       item.textOpacity = new Animated.Value(0);
-      const barTextOpacityAnimated = Animated.timing(item.textOpacity, {
+      const barTextOpacityAnimated = Animated.timing(item.textOpacity, { // the animation of date text
         toValue: 1,
         duration: 600,
         easing: Easing.linear,
@@ -103,7 +98,7 @@ const Card = () => {
         useNativeDriver: true,
       });
       item.moodIcon = new Animated.Value(0);
-      const moodIconAnimated = Animated.timing(item.moodIcon, {
+      const moodIconAnimated = Animated.timing(item.moodIcon, { // the animation of 'moodIcon'
         toValue: 1,
         duration: 600,
         easing: Easing.linear,
@@ -114,8 +109,8 @@ const Card = () => {
       item.barGrowAnimated = barGrowAnimated;
       item.barTextOpacityAnimated = barTextOpacityAnimated;
       item.moodIconAnimated = moodIconAnimated;
-      // item.backgroundAnimated = backgroundAnimated;
     });
+    // Traverse all elements and play the animation
     dataList.forEach(item => {
       const {barGrowAnimated, barTextOpacityAnimated, moodIconAnimated} = item;
       barGrowAnimated.start(() => {
@@ -128,11 +123,9 @@ const Card = () => {
 
   playAnimation();
 
+  // It will be called when the date text has been clicked
   const changeSelected = item => {
     if (item.isSelected) return;
-    // dataList.forEach(data => {
-    //   data.isSelected = false;
-    // });
     item.isSelected = true;
     setDataList([...dataList]);
   };
@@ -157,17 +150,19 @@ const Card = () => {
             : item.isSelected
             ? moodColor[item.level]
             : '#111';
-          const dateTextBgColor = item.isToday ? '#111' : '#fff';
+          const dateTextBgColor = item.isToday ? '#111' : '#fff'; // the color of date text should be distinguish with item status
           return (
             <View style={styles.statisticItem} key={item.id}>
-              <Animated.View
+              <Animated.View // The bar animation
                 style={{
                   ...styles.bar,
                   height: item.barHeight,
                   backgroundColor: moodColor[item.level],
                 }}>
-                <Text style={styles.barScore}>{item.score ? item.score : ''}</Text>
-                <Animated.Image
+                <Text style={styles.barScore}>
+                  {item.score ? item.score : ''}
+                </Text>
+                <Animated.Image // Image scale animation
                   style={{
                     ...styles.barImg,
                     transform: [
@@ -185,7 +180,7 @@ const Card = () => {
                   opacity: item.textOpacity,
                   color: dateTextColor,
                   backgroundColor: dateTextBgColor,
-                  elevation: item.isSelected ? 6 : 0,
+                  elevation: item.isSelected ? 6 : 0, // the selected button style
                 }}
                 onPress={() => {
                   changeSelected(item);

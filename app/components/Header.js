@@ -1,5 +1,9 @@
+/*
+  The Header Component of App
+*/
+
 import React from 'react';
-import {View, Text, StyleSheet, Image, Button, Alert} from 'react-native';
+import {View, Text, StyleSheet, Image} from 'react-native';
 
 const Header = () => {
   return (
@@ -15,8 +19,6 @@ const Header = () => {
 const styles = StyleSheet.create({
   header: {
     position: 'relative',
-    // height: 48,
-    // flex: 1,
   },
   back: {
     position: 'absolute',
