@@ -12,6 +12,7 @@ import {SafeAreaView, StyleSheet} from 'react-native';
 
 import Header from './app/components/Header';
 import Content from './app/components/Content';
+import ContentTest from './app/components/ContentTest';
 
 const App: () => Node = () => {
   const backgroundStyle = {
@@ -22,7 +23,8 @@ const App: () => Node = () => {
   return (
     <SafeAreaView style={backgroundStyle}>
       <Header style={styles.header} />
-      <Content style={styles.content} />
+      {/* <Content style={styles.content} /> */}
+      <ContentTest />
     </SafeAreaView>
   );
 };
